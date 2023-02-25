@@ -1,9 +1,17 @@
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 const ToggleDarkMode = () => {
+  const [mounted, setMounted] = useState(false)
   const { systemTheme, theme, setTheme } = useTheme()
   const currentTheme = theme === 'system' ? systemTheme : theme
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
   return (
     <>
       {currentTheme === 'dark' ? (

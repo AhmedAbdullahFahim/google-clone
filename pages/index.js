@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
-  const { systemTheme, theme, setTheme } = useTheme()
+  const { systemTheme, theme } = useTheme()
   const currentTheme = theme === 'system' ? systemTheme : theme
 
   useEffect(() => {
