@@ -8,7 +8,7 @@ const search = ({ results }) => {
   const router = useRouter()
   console.log(results)
   return (
-    <div>
+    <div className='dark:bg-[#202124]'>
       <Head>
         <title>{router.query.term} - Google Search</title>
       </Head>

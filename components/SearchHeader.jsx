@@ -1,5 +1,6 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { MicrophoneIcon } from '@heroicons/react/24/solid'
+import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useRef, useState } from 'react'
@@ -7,6 +8,8 @@ import Avatar from './Avatar'
 import HeaderOptions from './HeaderOptions'
 
 const SearchHeader = () => {
+  const { systemTheme, theme, setTheme } = useTheme()
+  const currentTheme = theme === 'system' ? systemTheme : theme
   const router = useRouter()
   const [term, setTerm] = useState('')
   const search = (e) => {
@@ -15,22 +18,26 @@ const SearchHeader = () => {
     router.push(`/search?term=${term}`)
   }
   return (
-    <header className='bg-white top-0 sticky z-10'>
+    <header className='bg-white top-0 sticky z-10 dark:bg-[#202124]'>
       <div className='grid grid-cols-2 grid-flow-row-dense sm:flex w-full p-6 items-center'>
         <Image
-          src='/google-logo.png'
+          src={
+            currentTheme === 'light'
+              ? '/google-logo.png'
+              : '/google-white-logo.png'
+          }
           alt=''
           width={120}
           height={40}
           className='cursor-pointer mt-2'
           onClick={() => router.push('/')}
         />
-        <form className='flex flex-grow ml-10 mr-5 px-6 py-3 border border-gray-200 rounded-full shadow-lg max-w-3xl items-center col-span-2 my-3 sm:my-0'>
+        <form className='flex flex-grow ml-10 mr-5 px-6 py-3 border border-gray-200 rounded-full shadow-lg max-w-3xl items-center col-span-2 my-3 sm:my-0 dark:border-gray-600 dark:shadow-none dark:focus-within:bg-[#303134] dark:hover:bg-[#303134]'>
           <input
             type='text'
             value={term}
             onChange={(e) => setTerm(e.target.value)}
-            className='focus:outline-none flex-grow w-full'
+            className='focus:outline-none flex-grow w-full dark:text-[#9aa0a6] dark:bg-transparent'
           />
           {term && (
             <XMarkIcon
@@ -38,13 +45,31 @@ const SearchHeader = () => {
               onClick={() => setTerm('')}
             />
           )}
-          <MicrophoneIcon className='h-5 text-blue-600 hidden sm:inline-flex border-l-2 border-gray-200 pl-3 mr-3' />
+          <MicrophoneIcon className='h-5 text-blue-600 hidden sm:inline-flex border-l-2 border-gray-200 pl-3 mr-3 dark:border-gray-700' />
           <MagnifyingGlassIcon className='h-5 text-blue-600 hidden sm:inline-flex' />
           <button hidden type='submit' onClick={search}>
             search
           </button>
         </form>
-        <Avatar className='ml-auto' />
+        <div className='flex items-center ml-auto space-x-4'>
+          {currentTheme === 'dark' ? (
+            <button
+              className='bg-transparent rounded-full border-purple-400 border-2 p-2 hover:bg-gray-800'
+              onClick={() => setTheme('light')}
+            >
+              {' '}
+              <Image src='/sun.svg' alt='logo' height='20' width='20' />
+            </button>
+          ) : (
+            <button
+              className='bg-transparent rounded-full border-purple-400 border-2 p-2 hover:bg-gray-100'
+              onClick={() => setTheme('dark')}
+            >
+              <Image src='/moon.svg' alt='logo' height='20' width='20' />
+            </button>
+          )}
+          <Avatar />
+        </div>
       </div>
       <HeaderOptions />
     </header>
