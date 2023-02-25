@@ -12,7 +12,7 @@ const SearchHeader = () => {
   const { systemTheme, theme, setTheme } = useTheme()
   const currentTheme = theme === 'system' ? systemTheme : theme
   const router = useRouter()
-  const [term, setTerm] = useState('')
+  const [term, setTerm] = useState(router.query.term)
   const search = (e) => {
     e.preventDefault()
     if (!term) return
