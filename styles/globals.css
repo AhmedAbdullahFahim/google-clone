@@ -6,6 +6,9 @@
   p {
     @apply pointer-events-none sm:pointer-events-auto;
   }
+  body {
+    @apply dark:bg-[#202124];
+  }
 }
 
 @layer components {

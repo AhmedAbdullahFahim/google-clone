@@ -6,7 +6,7 @@ const Pagination = () => {
   const router = useRouter()
   const startIndex = Number(router.query.start) || 0
   return (
-    <div className='flex items-center justify-between text-blue-700 mb-10 max-w-lg'>
+    <div className='flex items-center justify-between text-blue-700  mb-10 max-w-lg dark:text-blue-400'>
       {startIndex >= 10 && (
         <Link
           href={`/search?term=${router.query.term}&start=${startIndex - 10}`}
