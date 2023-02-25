@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import React, { useRef, useState } from 'react'
 import Avatar from './Avatar'
 import HeaderOptions from './HeaderOptions'
+import ToggleDarkMode from './ToggleDarkMode'
 
 const SearchHeader = () => {
   const { systemTheme, theme, setTheme } = useTheme()
@@ -52,22 +53,7 @@ const SearchHeader = () => {
           </button>
         </form>
         <div className='flex items-center ml-auto space-x-4'>
-          {currentTheme === 'dark' ? (
-            <button
-              className='bg-transparent rounded-full border-purple-400 border-2 p-2 hover:bg-gray-800'
-              onClick={() => setTheme('light')}
-            >
-              {' '}
-              <Image src='/sun.svg' alt='logo' height='20' width='20' />
-            </button>
-          ) : (
-            <button
-              className='bg-transparent rounded-full border-purple-400 border-2 p-2 hover:bg-gray-100'
-              onClick={() => setTheme('dark')}
-            >
-              <Image src='/moon.svg' alt='logo' height='20' width='20' />
-            </button>
-          )}
+          <ToggleDarkMode />
           <Avatar />
         </div>
       </div>
