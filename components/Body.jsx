@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { CameraIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { MicrophoneIcon } from '@heroicons/react/24/solid'
 import { useRef, useState } from 'react'
@@ -15,15 +14,15 @@ const Body = ({ currentTheme }) => {
   }
   return (
     <form className='flex flex-col items-center flex-1 w-4/5 mt-24'>
-      <Image
+      <img
+        loading='lazy'
         src={
           currentTheme === 'light'
             ? '/google-logo.png'
             : '/google-white-logo.png'
         }
-        width={250}
-        height={100}
         alt=''
+        className='h-[100px] w-[250px]'
       />
       <div className='flex w-full mt-5 hover:shadow-lg focus-within:shadow-lg max-w-md border border-gray-200 rounded-full px-4 py-3 items-center sm:max-w-lg lg:max-w-xl dark:border-gray-600 dark:shadow-none dark:focus-within:bg-[#303134] dark:hover:bg-[#303134]'>
         <MagnifyingGlassIcon className='min-h-5 h-5 mr-3 text-gray-500 dark:text-gray-300' />

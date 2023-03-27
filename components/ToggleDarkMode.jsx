@@ -1,5 +1,4 @@
 import { useTheme } from 'next-themes'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 const ToggleDarkMode = () => {
@@ -20,14 +19,24 @@ const ToggleDarkMode = () => {
           onClick={() => setTheme('light')}
         >
           {' '}
-          <Image src='/sun.svg' alt='logo' height='20' width='20' />
+          <img
+            src='/sun.svg'
+            alt='logo'
+            loading='lazy'
+            className='h-[20px] w-[20px]'
+          />
         </button>
       ) : (
         <button
           className='bg-transparent rounded-full border-gray-400 border-2 p-2 hover:bg-gray-100'
           onClick={() => setTheme('dark')}
         >
-          <Image src='/moon.svg' alt='logo' height='20' width='20' />
+          <img
+            src='/moon.svg'
+            alt='logo'
+            loading='lazy'
+            className='h-[20px] w-[20px]'
+          />
         </button>
       )}
     </>
